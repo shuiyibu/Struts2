@@ -119,3 +119,78 @@ In order to change any of theses settings you can use constant tag in your appli
    </package>
 </struts>
 ```
+
+# Validations Framework
+
+### Q&A
+[Why is struts validation not working for me?](http://stackoverflow.com/questions/2298999/why-is-struts-validation-not-working-for-me#)
+```
+Caused by: java.io.FileNotFoundException: http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd
+```
+---
+# Localization, internationalization (i18n)
+
+`localization`
+- The UI Tags
+- Messages and Errors.
+- Within action classes.
+
+`translation or localization enablement`
+
+## Resource Bundles
+>Resource bundles are the file that contains the key/value pairs for the default language of your application.
+
+## Access the messages
+Need to create following two actions.
+- First action a to take care of Locale and display same index.jsp file with different language
+- Another action is to take care of submitting form itself. Both the actions will return SUCCESS, but we will take different actions based on return values because our purpose is different for both the actions:
+
+------
+
+# Type Conversion
+By default
+- Integer, Float, Double, - -Decimal
+- Date and Datetime
+- Arrays and Collections
+- Enumerations
+- Boolean
+- BigDecimal
+
+
+# Themes & Templates
+Because it is not very much practical to use themes on per tag basis, so simply we can specify the rule in struts.properties file using the following tags:
+```
+# Standard UI theme
+struts.ui.theme=xhtml
+# Directory where theme template resides
+struts.ui.templateDir=template
+# Sets the default template type. Either ftl, vm, or jsp
+struts.ui.templateSuffix=ftl
+```
+
+# Exception Handling
+Let us modify the struts.xml as follows:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+   <package name="helloworld" extends="struts-default">
+
+      <action name="hello"
+         class="com.tutorialspoint.struts2.HelloWorldAction"
+         method="execute">
+         <exception-mapping exception="java.lang.NullPointerException"
+         result="error" />
+         <result name="success">/HelloWorld.jsp</result>
+         <result name="error">/Error.jsp</result>
+      </action>
+
+   </package>
+</struts>
+
+```
+-------
+ # Annotations
